@@ -9,8 +9,7 @@ const HomeView = () => {
 
   useEffect(() => {
     dispatch(getForecasts());
-    alert("The forecasts have been tried to be fetched")
-  })
+  }, [dispatch])
 
 
 

@@ -1,5 +1,3 @@
-import axios from "axios"
-import { Dispatch } from "redux"
 import { ThunkAction } from "redux-thunk"
 import { RootState } from ".."
 import { Forecast } from "../../interfaces/Forecast"
@@ -9,8 +7,7 @@ import { ForecastAction } from "../actions"
 export const getForecasts = (): ThunkAction<void, RootState, null, ForecastAction> => {
   return async dispatch => {
     try {
-      const headers = {'Content-Type': 'application/json'};
-      const res = await fetch('http://localhost:5000/weatherforecast'); //, {headers});
+      const res = await fetch('http://localhost:5000/weatherforecast');
       const forecasts: Forecast[] = await res.json();
       dispatch({
         type: GET_FORECASTS,

@@ -8,7 +8,7 @@ const initialState: ForecastState = {
   error: ''
 }
 
-export default (state = initialState, action: ForecastAction): ForecastState => {
+const forecastReducer = (state = initialState, action: ForecastAction): ForecastState => {
   switch(action.type) {
     case GET_FORECASTS:
       return {
@@ -20,3 +20,6 @@ export default (state = initialState, action: ForecastAction): ForecastState => 
       return state
   }
 }
+
+
+export default forecastReducer;
