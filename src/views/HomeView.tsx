@@ -14,12 +14,14 @@ const HomeView = () => {
 
 
   return (
-    <div style={{display: 'felx', textAlign: 'center'}}>
+    <div className="container mt-4">
       <h1>Home View</h1>
-      {forecastData ?
-        (
-          <h2>{JSON.stringify(forecastData)}</h2>
-        ) : (
+      {forecastData ? forecastData.map((f, i) => (
+        <div key={i} style={{textAlign: 'left', margin: '0 30%'}}>
+          {f.summary}
+        </div>
+      ))
+        : (
           <h2>No current Forecasts</h2>
         )
       }
