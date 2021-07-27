@@ -1,0 +1,17 @@
+.postCard {
+  margin: 20px 0;
+  width: 400px;
+  height: 500px;
+  box-shadow: 0px 1px 1px 0px lightgrey;
+  border-radius: 5px;
+  // border: solid 1px lightgrey;
+  padding: 20px;
+  h2 {
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
+  p {
+    color:rgb(121, 255, 192);
+  }
+  background-image: linear-gradient(135deg,rgb(0, 119, 255), rgb(0, 238, 255));
+}

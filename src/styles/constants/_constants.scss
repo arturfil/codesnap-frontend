@@ -1,0 +1,23 @@
+.view {
+  margin-top: 20px;
+
+  h2 {
+    font-weight: bold\;
+  }
+}
+
+.customBtn {
+  background-color: rgb(110, 70, 185);
+  border: none;
+  text-decoration: none;
+
+  &:hover {
+    background-color: rgb(177, 139, 248)!important;
+    color:white;
+  }
+}
+
+.btnLink {
+  text-decoration: none;
+  color: white;
+}

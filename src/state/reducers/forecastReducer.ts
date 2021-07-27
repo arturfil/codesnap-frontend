@@ -1,6 +1,6 @@
 import { ForecastState } from "../../interfaces/ForecastState";
-import { GET_FORECASTS } from "../action-types";
-import { ForecastAction } from "../actions";
+import { GET_FORECASTS } from "../action-types/forecastTypes";
+import { ForecastAction } from "../actions/forecastActions";
 
 const initialState: ForecastState = {
   forecasts: null,
