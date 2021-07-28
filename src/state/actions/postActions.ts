@@ -13,7 +13,7 @@ interface GetPostsAction {
 
 interface GetSinglePostAction {
   type: typeof GET_SINGLE_POST;
-  payload: Post[];
+  payload: Post;
 }
 
 export type PostAction = GetPostsAction | SetErrorAction | GetSinglePostAction;

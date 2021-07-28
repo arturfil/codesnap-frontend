@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const EditPostView = () => {
   return (
-    <div className="container view">
-      <h2>Edit Post View</h2>
-    </div>
+    <Container>
+      <h2 className="title">Post Detail</h2>
+    </Container>
   )
 }
 

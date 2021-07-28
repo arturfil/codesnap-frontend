@@ -48,7 +48,7 @@ export const getSinglePost = (id: string): ThunkAction<void, RootState, null, Po
   return async dispatch => {
     try {
       const res = await fetch(`http://localhost:5000/api/posts/${id}`);
-      const post: Post[] = await res.json();
+      const post: Post = await res.json();
       // post = post[0];
       dispatch({
         type: GET_SINGLE_POST,

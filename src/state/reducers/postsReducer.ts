@@ -17,12 +17,6 @@ const postsReducer = (state = initialState, action: PostAction): PostsResponse  
         loading: false,
         error: ''
       }
-    case GET_SINGLE_POST:
-      return {
-        data: action.payload,
-        loading: false,
-        error: ''
-      }
     // case SET_ERROR: TODO: create setError Actiona
     //     error: action.paylod
     default:
