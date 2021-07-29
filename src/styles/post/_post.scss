@@ -1,17 +1,29 @@
 .post {
+  margin-top: 40px;
+  border: solid 1px lightgrey;
+  box-shadow: 0px 4px 4px 0px lightgrey;
+  padding: 20px;
+
   h2 {
     font-weight: bold;
-    margin-top: 40px;
   }
 
   h4 {
     margin-top: 20px;
   }
 
-  p {
+  .tags  {
     text-transform: uppercase;
     margin-top: 20px;
     font-weight: bold;
-    color: rgb(38, 103, 241);
+    // color: rgb(38, 103, 241);
+    color: rgb(36, 36, 36);
   }
+
+  .user {
+    color: rgb(0, 0, 48);
+    font-weight: 700;
+    font-style: italic;
+  }
+
 }

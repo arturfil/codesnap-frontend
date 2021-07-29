@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomButton from './CustomButton'
+import LinkButton from './LinkButton'
 
 interface Props {
   id: string,
@@ -12,7 +13,7 @@ const PostCard = ({ title, description, id }: Props) => {
     <div className="postCard col-lg-4">
       <h2>{title}</h2>
       <p>{description}</p>
-      <CustomButton id={id} title="Check Post"/>
+      <LinkButton url={`/posts/${id}`} title="Check Post"/>
     </div>
   )
 }

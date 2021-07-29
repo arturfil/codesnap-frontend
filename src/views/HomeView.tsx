@@ -15,12 +15,18 @@ const HomeView = () => {
   }, [dispatch])
 
   return (
-    <Container style={{ marginTop: '40px' }}>
-      <h2 style={{ fontWeight: 'bold', marginBottom: '20px' }}>Home View</h2>
+    <Container style={{ marginTop: '40px'}}>
+      <h2 style={{ fontWeight: 'bold', marginBottom: '20px'}}>Home View</h2>
       <Row className="justify-content-md-center">
         {postsData ? postsData.map((p, i) => (
           <Fragment key={p.id}>  
-            <Col lg={4} >
+            <Col style={{display: 'flex', alignItems: 'center'}}>
+              <PostCard id={p.id} title={p.title} description={p.description} />
+            </Col>
+            <Col style={{display: 'flex', alignItems: 'center'}}>
+              <PostCard id={p.id} title={p.title} description={p.description} />
+            </Col>
+            <Col style={{display: 'flex', alignItems: 'center'}}>
               <PostCard id={p.id} title={p.title} description={p.description} />
             </Col>
           </Fragment>

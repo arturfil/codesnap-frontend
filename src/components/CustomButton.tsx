@@ -2,17 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface Props {
-  id?: string;
   title: string;
+  func?: Function
 }
 
-const CustomButton = ({title, id}: Props) => {
+const CustomButton = ({title, func}: Props) => {
   return (
     <>
-      <button className="btn btn-success customBtn">
-        <Link className="btnLink" to={`posts/${id}`}>
-          {title}
-        </Link>
+      <button onClick={() => func ? func() : null} className="btn btn-success customBtn">
+        {title}
       </button>
     </>
   )
