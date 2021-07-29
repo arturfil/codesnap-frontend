@@ -70,7 +70,7 @@ const PostDetail = () => {
               <div className="post view">
                 <h2>Comments</h2>
                 <hr/>
-                <p className="comments">I don't understand why you don't have a return function - <span className="user">German</span></p>
+                <p className="comments">I don't understand why you don't have a return inside the function, or braces - <span className="user">German</span></p>
                 <hr/>
                 <Form>
                   <Form.Group>
