@@ -6,10 +6,12 @@ export interface Post {
   tags: string;
 }
 
-export interface PostsResponse {
-  data: Post[] | null;
+export interface postsDataState {
+  data: Post[];
   loading: boolean;
-  error: string;
+  error: boolean;
+  postToEdit: Post,
+  postToDelete: Post
 }
 
 export interface SinglePostResponse {

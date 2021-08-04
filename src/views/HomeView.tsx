@@ -2,16 +2,15 @@ import React, { Fragment, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import PostCard from '../components/PostCard';
-import { RootState } from '../state'
-import { getForecasts, getPots } from '../state/action-creators';
+import { RootState } from '../state/store'
+import { getPotsAction } from '../state/action-creators';
 
 const HomeView = () => {
-  const forecastData = useSelector((state: RootState) => state.forecasts.forecasts);
   const postsData = useSelector((state: RootState) => state.posts.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPots());
+    dispatch(getPotsAction());
   }, [dispatch])
 
   return (
@@ -20,12 +19,6 @@ const HomeView = () => {
       <Row className="justify-content-md-center">
         {postsData ? postsData.map((p, i) => (
           <Fragment key={p.id}>  
-            <Col style={{display: 'flex', alignItems: 'center'}}>
-              <PostCard id={p.id} title={p.title} description={p.description} />
-            </Col>
-            <Col style={{display: 'flex', alignItems: 'center'}}>
-              <PostCard id={p.id} title={p.title} description={p.description} />
-            </Col>
             <Col style={{display: 'flex', alignItems: 'center'}}>
               <PostCard id={p.id} title={p.title} description={p.description} />
             </Col>

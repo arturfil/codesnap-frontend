@@ -1,5 +1,4 @@
 import React from 'react'
-import CustomButton from './CustomButton'
 import LinkButton from './LinkButton'
 
 interface Props {

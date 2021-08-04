@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
 import LinkButton from '../components/LinkButton';
-import { RootState } from '../state';
-import { getSinglePost } from '../state/action-creators'
 
 const PostDetail = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
-  const singleData = useSelector((state: RootState) => state.singlePost.post)
   const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-    dispatch(getSinglePost(id))
-    if (singleData !== null && tags.length <= 0)
-      separateTags(singleData.tags);
-  }, [id])
+  
+  }, [])
 
   // function to separate tags from strings to array of strings
-  const separateTags = async (tagsStr: string): Promise<string[] | void> => {
-    if (singleData?.tags === null) return;
+  /* ***const separateTags = async (tagsStr: string): Promise<string[] | void> => {
+    // if (singleData?.tags === null) return;
     let tagArr: string[] = [];
     // get rid off all white spaces    
     tagsStr = tagsStr.replace(/ /g, '');
@@ -29,15 +23,12 @@ const PostDetail = () => {
     tagArr = tagsStr.split(',')
     setTags(tagArr);
   }
-
-  const editPost = () => (
-    <Redirect to={`/editPost/${id}`} />
-  )
+  *** */
 
   return (
     <>
       <Container>
-      <h2 style={{fontWeight: 'bold', marginTop: '40px'}}>{singleData?.title}</h2>
+      <h2 style={{fontWeight: 'bold', marginTop: '40px'}}>singleData</h2>
         <Row>
           <Col>
             <div className="container view post">
@@ -53,7 +44,7 @@ const PostDetail = () => {
           </Col>
           <Col lg={9}>
             <div className="container view post">
-              <h4 className="description">{singleData?.description}</h4>
+              <h4 className="description">Description</h4>
               <p className="tags">
                 {tags.length > 0 ? tags.map((t, i) => (
                   <span key={i}>#{t} </span>

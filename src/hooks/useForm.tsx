@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 // T is refering to any type of object or data TYPE -> T
 export const useForm = <T extends Object>(initState: T) => {
