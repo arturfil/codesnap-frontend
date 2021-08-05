@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import CommentSection from '../components/CommentSection';
 import CustomButton from '../components/CustomButton';
 import LinkButton from '../components/LinkButton';
+import PostDetailBody from '../components/PostDetailBody';
+import { getSinglePostAction } from '../state/action-methods/postMethods';
+import { RootState } from '../state/store';
 
-const PostDetail = () => {
-  // const dispatch = useDispatch();
+const PostDetailView = () => {
+  const dispatch = useDispatch();
+  const { title, tags, description } = useSelector((state: RootState) => state.posts.singlePost);
   const { id } = useParams<{ id: string }>();
-  const [tags, setTags] = useState<string[]>([]);
+  const [sepTags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-  
-  }, [])
+    dispatch(getSinglePostAction(id));
+    separateTags(tags)
+  }, [dispatch, tags])
 
   // function to separate tags from strings to array of strings
-  /* ***const separateTags = async (tagsStr: string): Promise<string[] | void> => {
-    // if (singleData?.tags === null) return;
+  const separateTags = async (tagsStr: string): Promise<string[] | void> => {
+    if (tagsStr === undefined) return;
     let tagArr: string[] = [];
     // get rid off all white spaces    
     tagsStr = tagsStr.replace(/ /g, '');
@@ -23,54 +30,41 @@ const PostDetail = () => {
     tagArr = tagsStr.split(',')
     setTags(tagArr);
   }
-  *** */
+
+  const TagsBox = () => (
+    <div className="container view post">
+      <h2>{tags}</h2>
+      <div className="tags">
+        {sepTags.length > 0 ? sepTags.map((t, i) => (
+          <div key={i}>
+            <span >#{t} </span>
+          </div>
+        )) : (
+          <span>Loading</span>
+        )}
+      </div>
+    </div>
+  )
 
   return (
     <>
       <Container>
-      <h2 style={{fontWeight: 'bold', marginTop: '40px'}}>singleData</h2>
         <Row>
           <Col>
-            <div className="container view post">
-              <h2>Tags</h2>
-              <p className="tags">
-                {tags.length > 0 ? tags.map((t, i) => (
-                  <span key={i}>#{t} </span>
-                )) : (
-                  <span>Loading</span>
-                )}
-              </p>
-            </div>
+            <TagsBox />
           </Col>
           <Col lg={9}>
-            <div className="container view post">
-              <h4 className="description">Description</h4>
-              <p className="tags">
-                {tags.length > 0 ? tags.map((t, i) => (
-                  <span key={i}>#{t} </span>
-                )) : (
-                  <span>Loading</span>
-                )}
-              </p>
-              <LinkButton title="Edit Post" url={`/editPost/${id}`} />
-            </div>
+            <PostDetailBody 
+              title={title} 
+              description={description} 
+              tags={sepTags} 
+              id={id} 
+            />
           </Col>
           <Row>
-            <Col lg={3} />
+            <Col />
             <Col lg={9}>
-              <div className="post view">
-                <h2>Comments</h2>
-                <hr/>
-                <p className="comments">I don't understand why you don't have a return inside the function, or braces - <span className="user">German</span></p>
-                <hr/>
-                <Form>
-                  <Form.Group>
-                    <Form.Label style={{fontWeight: 700}}>Add your comment</Form.Label>
-                    <Form.Control type="text" style={{marginBottom: '20px'}}/>
-                  <CustomButton title="Submit Comment" />
-                  </Form.Group>
-                </Form>
-              </div>
+              <CommentSection />
             </Col>
           </Row>
 
@@ -80,4 +74,4 @@ const PostDetail = () => {
   )
 }
 
-export default PostDetail
+export default PostDetailView

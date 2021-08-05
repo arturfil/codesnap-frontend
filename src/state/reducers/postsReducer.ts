@@ -1,20 +1,22 @@
 import { postsDataState, Post } from "../../interfaces/Post";
-import { GET_POSTS, GET_POSTS_ERROR, GET_POSTS_SUCCESS } from "../action-types/postTypes";
-import { PostActionTypes } from "../actions/postsActionTypes";
+import { GET_POSTS, GET_POSTS_ERROR, GET_POSTS_SUCCESS, GET_SINGLE_POST, GET_SINGLE_POST_SUCCESS } from '../types/postTypes'
+import { GetPostActionTypes } from "../action-types/postsActionTypes";
 
 const initialState: postsDataState = {
   data: [],
   loading: false,
   error: false,
-  postToEdit: {} as Post,
+  singlePost: {} as Post,
   postToDelete: {} as Post
 }
 
-const postsReducer = (state = initialState, action: PostActionTypes): postsDataState  => {
+const postsReducer = (state = initialState, action: GetPostActionTypes): postsDataState  => {
   switch(action.type) {
     case GET_POSTS:
       return {
         ...state,
+        error: false,
+        data: [],
         loading: true,
       }
     case GET_POSTS_SUCCESS:
@@ -28,6 +30,17 @@ const postsReducer = (state = initialState, action: PostActionTypes): postsDataS
         ...state,
         loading: false,
         error: action.payload
+      }
+    case GET_SINGLE_POST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case GET_SINGLE_POST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        singlePost: action.payload
       }
     default:
       return state;

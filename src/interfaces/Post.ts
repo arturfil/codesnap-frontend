@@ -10,12 +10,10 @@ export interface postsDataState {
   data: Post[];
   loading: boolean;
   error: boolean;
-  postToEdit: Post,
+  singlePost: Post,
   postToDelete: Post
 }
 
-export interface SinglePostResponse {
-  post: Post,
-  loading: boolean;
-  error: string
+export interface PostResponse {
+  post: Post[],
 }

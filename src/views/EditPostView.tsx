@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Container, Form } from 'react-bootstrap'
-// import { useDispatch } from 'react-redux'
-// import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom'
 import CustomButton from '../components/CustomButton'
 // import { useForm } from '../hooks/useForm'
 
 const EditPostView = () => {
-  // const dispatch = useDispatch();
-  // const { id } = useParams<{id: string}>();
+  const dispatch = useDispatch();
+  const { id } = useParams<{id: string}>();
   // const {title, description, tags, changing, setFormValue} = useForm({
   //   title: '', 
   //   description: '',
@@ -31,7 +31,7 @@ const EditPostView = () => {
           <Form.Control
             name="description"
             style={{ marginBottom: '20px' }}
-            type="text" />
+            as="textarea" rows={5} />
           <Form.Label>Tags</Form.Label>
           <Form.Control
             name="tags"

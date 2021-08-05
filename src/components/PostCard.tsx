@@ -1,5 +1,6 @@
 import React from 'react'
-import LinkButton from './LinkButton'
+import { useHistory } from 'react-router-dom'
+import CustomButton from './CustomButton'
 
 interface Props {
   id: string,
@@ -8,11 +9,17 @@ interface Props {
 }
 
 const PostCard = ({ title, description, id }: Props) => {
+  const history = useHistory();
+  
+  const redirectToEdit = () => {
+    history.push(`/posts/${id}`);
+  }
+  
   return (
     <div className="postCard col-lg-4">
       <h2>{title}</h2>
       <p>{description}</p>
-      <LinkButton url={`/posts/${id}`} title="Check Post"/>
+      <CustomButton title="Edit" func={() => redirectToEdit()}/>
     </div>
   )
 }
