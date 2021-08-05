@@ -1,5 +1,5 @@
 import { postsDataState, Post } from "../../interfaces/Post";
-import { GET_POSTS, GET_POSTS_ERROR, GET_POSTS_SUCCESS, GET_SINGLE_POST, GET_SINGLE_POST_SUCCESS } from '../types/postTypes'
+import { GET_POSTS, GET_POSTS_ERROR, GET_POSTS_SUCCESS, GET_SINGLE_POST, GET_SINGLE_POST_SUCCESS, UPDATE_POST, UPDATE_POST_SUCCESS } from '../types/postTypes'
 import { GetPostActionTypes } from "../action-types/postsActionTypes";
 
 const initialState: postsDataState = {
@@ -31,6 +31,7 @@ const postsReducer = (state = initialState, action: GetPostActionTypes): postsDa
         loading: false,
         error: action.payload
       }
+    case UPDATE_POST:
     case GET_SINGLE_POST:
       return {
         ...state,
@@ -41,6 +42,11 @@ const postsReducer = (state = initialState, action: GetPostActionTypes): postsDa
         ...state,
         loading: false,
         singlePost: action.payload
+      }
+    case UPDATE_POST_SUCCESS:
+      return {
+        ...state,
+        data: state.data.map(p => p.id === action.payload.id ? (p = action.payload) : p)
       }
     default:
       return state;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PostCard from '../components/PostCard';
 import { RootState } from '../state/store'
 import { getPostsAction } from '../state/action-methods/postMethods';
+import CustomSpinner from '../components/CustomSpinner';
 
 const HomeView = () => {
   const {data: posts, loading, error} = useSelector((state: RootState) => state.posts);
@@ -19,10 +20,7 @@ const HomeView = () => {
       { error && <Alert variant="danger">{error}</Alert>}
       <Row className="justify-content-md-center">
         {loading && (
-          <div className="text-center">
-            <Spinner style={{marginTop: '40px', height: '80px', width: '80px'}} animation="border" role="status" />
-            <h4>Loading ...</h4>
-          </div>
+          <CustomSpinner/>
         )}
         {posts ? posts.map((p, i) => (
           <Fragment key={p.id}>

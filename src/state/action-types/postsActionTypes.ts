@@ -6,6 +6,9 @@ import {
   GET_SINGLE_POST,
   GET_SINGLE_POST_ERROR,
   GET_SINGLE_POST_SUCCESS,
+  UPDATE_POST,
+  UPDATE_POST_ERROR,
+  UPDATE_POST_SUCCESS,
 } from "../types/postTypes";
 
 // TODO: Check if it would be better to separate this into two files later on
@@ -39,10 +42,27 @@ interface GetSinglePostError {
   payload: true;
 }
 
+interface UpdatePost {
+  type: typeof UPDATE_POST;
+}
+
+interface UpdatePostSuccess {
+  type: typeof UPDATE_POST_SUCCESS;
+  payload: Post
+}
+
+interface UpdatePostError {
+  type: typeof UPDATE_POST_ERROR;
+  payload: true;
+}
+
 export type GetPostActionTypes =
   | GetPosts
   | GetPostsSuccess
   | GetPostsError
   | GetSinglePost
   | GetSinglePostSuccess
-  | GetSinglePostError;
+  | GetSinglePostError
+  | UpdatePost
+  | UpdatePostSuccess
+  | UpdatePostError;

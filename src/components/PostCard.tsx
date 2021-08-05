@@ -11,7 +11,7 @@ interface Props {
 const PostCard = ({ title, description, id }: Props) => {
   const history = useHistory();
   
-  const redirectToEdit = () => {
+  const redirectToDetails = () => {
     history.push(`/posts/${id}`);
   }
   
@@ -19,7 +19,7 @@ const PostCard = ({ title, description, id }: Props) => {
     <div className="postCard col-lg-4">
       <h2>{title}</h2>
       <p>{description}</p>
-      <CustomButton title="Edit" func={() => redirectToEdit()}/>
+      <CustomButton title="View" func={() => redirectToDetails()}/>
     </div>
   )
 }

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Form, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CommentSection from '../components/CommentSection';
-import CustomButton from '../components/CustomButton';
-import LinkButton from '../components/LinkButton';
+import CustomSpinner from '../components/CustomSpinner';
 import PostDetailBody from '../components/PostDetailBody';
 import { getSinglePostAction } from '../state/action-methods/postMethods';
 import { RootState } from '../state/store';
@@ -12,13 +11,14 @@ import { RootState } from '../state/store';
 const PostDetailView = () => {
   const dispatch = useDispatch();
   const { title, tags, description } = useSelector((state: RootState) => state.posts.singlePost);
+  const { loading } = useSelector((state: RootState) => state.posts);
   const { id } = useParams<{ id: string }>();
   const [sepTags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
     dispatch(getSinglePostAction(id));
     separateTags(tags)
-  }, [dispatch, tags])
+  }, [dispatch, tags, id])
 
   // function to separate tags from strings to array of strings
   const separateTags = async (tagsStr: string): Promise<string[] | void> => {
@@ -40,7 +40,7 @@ const PostDetailView = () => {
             <span >#{t} </span>
           </div>
         )) : (
-          <span>Loading</span>
+          <CustomSpinner />
         )}
       </div>
     </div>
@@ -54,17 +54,26 @@ const PostDetailView = () => {
             <TagsBox />
           </Col>
           <Col lg={9}>
-            <PostDetailBody 
-              title={title} 
-              description={description} 
-              tags={sepTags} 
-              id={id} 
-            />
+            {loading ? (
+              <CustomSpinner />
+            ) : (
+              <PostDetailBody
+                title={title}
+                description={description}
+                tags={sepTags}
+                id={id}
+              />
+            )}
           </Col>
           <Row>
             <Col />
             <Col lg={9}>
-              <CommentSection />
+              {loading ? (
+                  <CustomSpinner />
+                ) : (
+                  <CommentSection />
+                )
+              }
             </Col>
           </Row>
 

@@ -46,3 +46,10 @@ export const getSinglePostAction = (id: string): ThunkAction<void, RootState, nu
     }
   }
 }
+
+// Update Post
+export const updatePostAction = (post: Post): ThunkAction<void, RootState, null, GetPostActionTypes> => {
+  return async dispatch => {
+    
+  }
+}
