@@ -1,5 +1,11 @@
 import { Post } from "../../interfaces/Post";
 import {
+  CREATE_POST,
+  CREATE_POST_ERROR,
+  CREATE_POST_SUCCESS,
+  DELETE_POST,
+  DELETE_POST_ERROR,
+  DELETE_POST_SUCCESS,
   GET_POSTS,
   GET_POSTS_ERROR,
   GET_POSTS_SUCCESS,
@@ -11,8 +17,8 @@ import {
   UPDATE_POST_SUCCESS,
 } from "../types/postTypes";
 
-// TODO: Check if it would be better to separate this into two files later on
-// get posts action types
+
+// GET posts action types
 export interface GetPosts {
   type: typeof GET_POSTS;
 }
@@ -27,7 +33,8 @@ interface GetPostsError {
   payload: true;
 }
 
-// single post action types
+
+// GET/:id
 interface GetSinglePost {
   type: typeof GET_SINGLE_POST;
 }
@@ -42,6 +49,8 @@ interface GetSinglePostError {
   payload: true;
 }
 
+
+// PUT/:id
 interface UpdatePost {
   type: typeof UPDATE_POST;
 }
@@ -56,6 +65,38 @@ interface UpdatePostError {
   payload: true;
 }
 
+
+// POST/:id
+interface CreatePost {
+  type: typeof CREATE_POST
+}
+
+interface CreatePostSuccess {
+  type: typeof CREATE_POST_SUCCESS,
+  payload: Post
+}
+
+interface CreatePostError {
+  type: typeof CREATE_POST_ERROR,
+  payload: true
+}
+
+
+// DELETE/:id
+interface DeletePost {
+  type: typeof DELETE_POST
+}
+
+interface DeletePostSuccess {
+  type: typeof DELETE_POST_SUCCESS,
+  payload: string
+}
+
+interface DeletePostError {
+  type: typeof DELETE_POST_ERROR,
+  payload: true
+}
+
 export type GetPostActionTypes =
   | GetPosts
   | GetPostsSuccess
@@ -65,4 +106,10 @@ export type GetPostActionTypes =
   | GetSinglePostError
   | UpdatePost
   | UpdatePostSuccess
-  | UpdatePostError;
+  | UpdatePostError
+  | CreatePost
+  | CreatePostSuccess
+  | CreatePostError
+  | DeletePost
+  | DeletePostSuccess
+  | DeletePostError

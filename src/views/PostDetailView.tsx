@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import CommentSection from '../components/CommentSection';
 import CustomSpinner from '../components/CustomSpinner';
 import PostDetailBody from '../components/PostDetailBody';
-import { getSinglePostAction } from '../state/action-methods/postMethods';
+import { getSinglePostAction, deletePostAction } from '../state/action-methods/postMethods';
 import { RootState } from '../state/store';
 
 const PostDetailView = () => {
+  const history = useHistory(); 
   const dispatch = useDispatch();
   const { title, tags, description } = useSelector((state: RootState) => state.posts.singlePost);
   const { loading } = useSelector((state: RootState) => state.posts);
@@ -62,6 +63,7 @@ const PostDetailView = () => {
                 description={description}
                 tags={sepTags}
                 id={id}
+                // detailFunc={() => deletePost}
               />
             )}
           </Col>

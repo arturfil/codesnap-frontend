@@ -1,14 +1,27 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { deletePostAction } from '../state/action-methods/postMethods'
+import CustomButton from './CustomButton'
 import LinkButton from './LinkButton'
 
 interface Props {
+  detailFunc?: Function
   title: string,
   description: string,
   tags: string[],
   id: string
 }
 
-const PostDetailBody = ({ title, description, tags, id }: Props) => {
+const PostDetailBody = ({ title, description, tags, id, detailFunc }: Props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  
+  const deletePost = async(): Promise<void> => {
+    dispatch(deletePostAction(id));
+    history.push('');
+  }
+
   return (
     <div>
       <div className="container view post">
@@ -23,9 +36,14 @@ const PostDetailBody = ({ title, description, tags, id }: Props) => {
           )}
         </p>
         <LinkButton title="Edit Post" url={`/editPost/${id}`} />
+        <CustomButton 
+          title="Delete Button" 
+          func={deletePost} 
+          buttonStyles={{ marginLeft: '10px', backgroundColor: 'red' }} 
+        />
       </div>
     </div>
   )
 }
 
-export default PostDetailBody
+export default PostDetailBody;

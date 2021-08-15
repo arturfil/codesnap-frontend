@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from 'react'
 export const useForm = <T extends Object>(initState: T) => {
   const [state, setState] = useState(initState);
   // here we are going to be controlling the state of an input view the name property of the input el.
-  const changing = (name: string) => (event: ChangeEvent<HTMLInputElement>) => {
+  const changing = (name: any) => (event: ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [name]: event.target.value
